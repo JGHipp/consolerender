@@ -1,12 +1,11 @@
 /*
 	Written by John Hippisley, 1/13/19
-
 */
 
 #include <iostream>
 using namespace std;
 
-//characters printed to console
+// Characters printed to console
 #define UPPER_BLOCK "\u2580"
 #define LOWER_BLOCK "\u2584"
 #define FULL_BLOCK "\u2588"
@@ -14,15 +13,15 @@ using namespace std;
 #define PIXEL_ON 1
 #define PIXEL_OFF 0
 
-//definition of pixel (monochrome)
+// Pixels are monochrome
 typedef bool pixel_t;
 
-//dimensions of buffer
+// Buffer dimension
 const int BUFFER_WIDTH = 64;
 const int BUFFER_HEIGHT = 32;
 bool imageBuffer[BUFFER_WIDTH * BUFFER_HEIGHT];
 
-//rendering-related functions
+// Rendering functions
 void init();
 void renderBuffer();
 bool inRange(int x, int y);
@@ -66,23 +65,23 @@ void init()
 
 void renderBuffer()
 {
-	//divide buffer into 2 row segments
+	// Divide buffer into 2 row segments
 	int nSegments = BUFFER_HEIGHT / 2;
 	for(int segment = 0; segment < nSegments; ++segment)
 	{
-		//calculate y's for both rows
+		// Calculate y's for both rows
 		int y1 = segment * 2;
 		int y2 = segment * 2 + 1;
-		//cycle through rows in segment
+		// Cycle through rows in segment
 		for(int x = 0; x < BUFFER_WIDTH; ++x)
 		{
-			//determine which character should be printed
-			/***/if(getPixel(x, y1) && !getPixel(x, y2)){ cout << UPPER_BLOCK; }
-			else if(getPixel(x, y2) && !getPixel(x, y1)){ cout << LOWER_BLOCK; }
-			else if(getPixel(x, y1) && getPixel(x, y2)) { cout << FULL_BLOCK;  }
+			// Determine which character should be printed
+			if(getPixel(x, y1) && !getPixel(x, y2)) cout << UPPER_BLOCK;
+			else if(getPixel(x, y2) && !getPixel(x, y1)) cout << LOWER_BLOCK;
+			else if(getPixel(x, y1) && getPixel(x, y2)) cout << FULL_BLOCK;
 			else cout << CHAR_EMPTY;
 		}
-		//newline
+		// Newline
 		cout << endl;
 	}
 }
@@ -103,7 +102,6 @@ void putPixel(int x, int y, pixel_t value)
 {
 	if(inRange(x, y)) imageBuffer[x + y * BUFFER_WIDTH] = value;
 }
-
 
 void drawRect(int x, int y, int width, int height, pixel_t value)
 {
