@@ -1,8 +1,6 @@
 /*
 	Written by John Hippisley, 1/13/19
-	Rewrite of console rendering engine using
-	upper, lower, and full blocks to make
-	uniform pixels.
+
 */
 
 #include <iostream>
