@@ -3,5 +3,5 @@ CFLAGS=-g
 FILES=*.cpp
 EXEC=consoleRender
 
-raycaster: $(FILES)
+consolerender: $(FILES)
 	$(CC) $(FILES) $(CFLAGS) -o $(EXEC)
